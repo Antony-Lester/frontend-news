@@ -6,6 +6,7 @@ import { useState } from 'react'
 import {UserIdContext} from './contexts/userContext'
 import Articles from './components/articles';
 import Topics from './components/topics';
+import Article from './components/article';
 
 function App() {
   const [USERID, setUSERID] = useState() //Hard Coded 
@@ -17,7 +18,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Articles/>} />
             <Route path='/topics' element={<Topics/>} />
-            <Route path='/topic/:topic_id' element={<Articles/>} />
+            <Route path='/topic/:topic_id' element={<Articles />} />
+            <Route path='/article/:article_id' element={<Article />} />
           </Routes>
         </UserIdContext.Provider>
       </BrowserRouter>

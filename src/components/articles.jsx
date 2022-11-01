@@ -21,14 +21,14 @@ export default function Articles() {
         if (location.pathname.slice(1, 6) === 'topic')
         {
             getArticles(sort, direction, location.pathname.slice(7))
-                .then(data => { setArticles(data); })
-                .then(() => { setLoading(0)});
+                .then(data => { setArticles(data)})
+                .then(() => {setLoading(0)});
         }
         else
         {
             getArticles(sort, direction)
-                .then(data => { setArticles(data); })
-                .then(() => { setLoading(0)});
+                .then(data => { setArticles(data)})
+                .then(() => {setLoading(0)});
         }
         
     }, [sort, direction, location]);
@@ -47,9 +47,11 @@ export default function Articles() {
         </div>
         <div className='articles border grayBackground'>
             {articles.map((article, i) => {
-                return (<div className="articleSummery border flip" key={i}>
-                    <div className='articleTitle'>{article.title}</div>
-                </div>)
+                return (
+                    <div className="articleSummery border flip" key={i}>
+                    <Link to={`/article/${article.article_id}`} className='link'><div className='articleTitle'>{article.title}</div></Link>
+                    </div>
+                )
             })}
         </div>    
     </>

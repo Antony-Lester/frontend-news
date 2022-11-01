@@ -13,3 +13,9 @@ export const getTopics = () => {
         .then((res) => {return res.data })
         .catch((err) => { return [{ slug:err }]})
 }
+
+export const getArticle = (article_id) => {
+    return url.get(`articles/${article_id}`)
+        .then((res) => {return res.data })
+        .catch((err) => { return [{ title:err }]})
+}
