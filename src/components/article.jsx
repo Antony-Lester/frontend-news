@@ -1,7 +1,7 @@
 
 import { useState, useEffect, } from 'react';
 import { Link, useLocation} from "react-router-dom";
-import { getArticle } from '../utils/API';
+import { getArticle, patchVote } from '../utils/API';
 
 import artImg from '../images/article.svg'
 import loadImg from '../images/loading.svg'
@@ -12,7 +12,32 @@ export default function Article() {
 
     const [article, setArticle] = useState([]);
     const [loading, setLoading] = useState(1);
+    const [processVote, setProcessVote] = useState(0);
     const location = useLocation();
+
+    const handleVote = (event) => { 
+        if (processVote){
+            setArticle(article => { return { ...article, votes: article.votes - 1 }; })
+            setProcessVote(0)
+        } else {
+            setArticle(article => { return { ...article, votes: article.votes + 1 }; })
+            setProcessVote(1)
+        }
+        
+        event.preventDefault()
+    }
+
+    useEffect(() => {
+        patchVote(location.pathname.slice(9))
+            .then(data => { setArticle(data);}) 
+            .catch(()=>setProcessVote(0))
+    }, [processVote]);
+
+    useEffect(() => {
+        getArticle(location.pathname.slice(9))
+        .then(data => { setArticle(data); })
+        .then(() => { setLoading(0)});
+    }, [location]);
 
     useEffect(() => {
         setLoading(1)
@@ -23,9 +48,9 @@ export default function Article() {
 
     return (<>
         <div className='buttonBar'>
-            <div className='votes center title' >{loading ? 'Loading' : ' 🌟 ' + article.votes}</div>
-
-            {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order" onClick={() => { setLoading(1)}} /> : <img className='directionButton border center brownBackground lift' src={artImg} alt="sort order" onClick={() => { setLoading(1)}} />}
+            <button className={processVote ? 'center title votes lift' : 'center border grayBackground title votes lift'} onClick={handleVote}>
+                {loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
+            {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order"/> : <img className='directionButton border center brownBackground lift' src={artImg} alt="sort order"/>}
             <Link to ='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
         </div>
         <div className='articles border brownBackground'>
