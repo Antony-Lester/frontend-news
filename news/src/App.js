@@ -5,17 +5,19 @@ import { useState } from 'react'
 
 import {UserIdContext} from './contexts/userContext'
 import Articles from './components/articles';
+import Topics from './components/topics';
 
 function App() {
   const [USERID, setUSERID] = useState() //Hard Coded 
-  const [currentPage, setCurrentPage] = useState('articles')
-
+  
   return (
     <div className="App">
       <BrowserRouter>
         <UserIdContext.Provider value={{ USERID, setUSERID }}>
           <Routes>
-            <Route path='/' element={<Articles setCurrentPage={setCurrentPage}/>} />
+            <Route path='/' element={<Articles/>} />
+            <Route path='/topics' element={<Topics/>} />
+            <Route path='/topic/:topic_id' element={<Articles/>} />
           </Routes>
         </UserIdContext.Provider>
       </BrowserRouter>
