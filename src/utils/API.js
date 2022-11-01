@@ -20,7 +20,7 @@ export const getArticle = (article_id) => {
         .catch((err) => { return [{ title:err }]})
 }
 
-export const patchVote = (article_id) => { 
-    return url.patch(`articles/${article_id}`, {"inc_votes": "+1"})
+export const patchVote = (article_id, voteDirection) => { 
+    return url.patch(`articles/${article_id}`, !voteDirection? {"inc_votes": "+1"} : {"inc_votes": "-1"})
         .then((res) => {return res.data })
 }

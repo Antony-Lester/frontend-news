@@ -16,21 +16,17 @@ export default function Article() {
     const location = useLocation();
 
     const handleVote = (event) => { 
-        if (processVote){
-            setArticle(article => { return { ...article, votes: article.votes - 1 }; })
-            setProcessVote(0)
-        } else {
-            setArticle(article => { return { ...article, votes: article.votes + 1 }; })
-            setProcessVote(1)
-        }
-        
+        setArticle(article => { return { ...article, votes: article.votes + 1 }; })
+        setProcessVote(1)
         event.preventDefault()
     }
 
     useEffect(() => {
-        patchVote(location.pathname.slice(9))
-            .then(data => { setArticle(data);}) 
-            .catch(()=>setProcessVote(0))
+        if (processVote) {
+            patchVote(location.pathname.slice(9))
+                .then(data => { setArticle(data);}) 
+                .catch(()=>setProcessVote(0))
+        }
     }, [processVote]);
 
     useEffect(() => {
@@ -48,8 +44,8 @@ export default function Article() {
 
     return (<>
         <div className='buttonBar'>
-            <button className={processVote ? 'center title votes lift' : 'center border grayBackground title votes lift'} onClick={handleVote}>
-                {loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
+            <button className={processVote?'center title votes lift' : 'center border grayBackground title votes lift'}
+                onClick={handleVote} disabled={processVote} >{loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
             {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order"/> : <img className='directionButton border center brownBackground lift' src={artImg} alt="sort order"/>}
             <Link to ='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
         </div>
