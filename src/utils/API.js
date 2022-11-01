@@ -24,5 +24,3 @@ export const patchVote = (article_id) => {
     return url.patch(`articles/${article_id}`, {"inc_votes": "+1"})
         .then((res) => {return res.data })
 }
-
-//PATCH /api/articles/:article_id
