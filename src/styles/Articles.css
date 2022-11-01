@@ -14,7 +14,7 @@
 		#9a9a9a,#656565);}
 .center{top: 50%;left: 50%;}
 .sortInput{position: absolute;background-color: transparent;padding: 1vmin;
-    margin: 0;-ms-transform: translate(0%, -50%);transform: translate(-150%,-50%);
+    margin: 0;-ms-transform: translate(150%, -50%);transform: translate(150%,-50%);
     font-family: 'Roboto', sans-serif;}
 option {color: white;background: #656565;}
 .directionButton{position: absolute;width: 5vmin;height: 5vmin;padding: 1vmin;
@@ -38,5 +38,6 @@ option {color: white;background: #656565;}
 .articleTitle{
     position: relative;width: 100%;height: auto;text-align: center;color: white;
     font-family: 'IM Fell DW Pica SC', serif; font-style: bold;}
+
 .flip :hover{filter: invert(1)}
 .lift{box-shadow: 0 0 10px 5px #48767c;}
