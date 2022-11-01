@@ -4,4 +4,4 @@
 .artTitle{text-align: center; font-family: 'Special Elite', cursive;}
 .artBody{text-align: center;padding: 5%;font-family: 'EB Garamond', serif;}
 .artAuthor{text-align: center;padding: 5%;font-family: 'Aguafina Script', cursive;}
-.votes{padding-right: 2.5%;}
+.votes{padding-right: 0%; margin-right: 2%; width: 12%;}

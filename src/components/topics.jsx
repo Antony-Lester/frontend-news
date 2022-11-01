@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getTopics } from '../utils/API';
 
 import topicImg from '../images/topics.svg'
@@ -19,7 +19,7 @@ export default function Articles() {
 
     return (<>
         <div className='buttonBar'>
-            <div className='title center title' >Topics</div>
+            <div className='title center' >Topics</div>
             {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order"/> : <img className='directionButton border center grayBackground lift' src={topicImg} alt="sort order"  />}
             <Link to ='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
         </div>
