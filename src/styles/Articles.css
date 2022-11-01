@@ -12,6 +12,14 @@
 		#9a9a9a,#656565);
 	background-image: linear-gradient(to right,#656565,#9a9a9a,
 		#9a9a9a,#656565);}
+.brownBackground{background-image: -o-linear-gradient(to right,#4a2b2b,
+    #945656,#945656,#4a2b2b);
+    background-image: -moz-linear-gradient(to right,#4a2b2b,#945656,
+    #945656,#4a2b2b);
+    background-image: -webkit-linear-gradient(to right,#4a2b2b,#945656,
+    #945656,#4a2b2b);
+    background-image: linear-gradient(to right,#4a2b2b,#945656,
+    #945656,#4a2b2b);}
 .center{top: 50%;left: 50%;}
 .sortInput{position: absolute;background-color: transparent;padding: 1vmin;
     margin: 0;-ms-transform: translate(150%, -50%);transform: translate(150%,-50%);
