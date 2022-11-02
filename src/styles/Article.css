@@ -5,3 +5,25 @@
 .artBody{text-align: center;padding: 5%;font-family: 'EB Garamond', serif;}
 .artAuthor{text-align: center;padding: 5%;font-family: 'Aguafina Script', cursive;}
 .votes{padding-right: 0%; margin-right: 2%; width: 12%;}
+
+.articlesSmall{
+    position:absolute;top: 10vh;height: 40vh;width: 90vw;
+    margin-left: 5vmin;margin-right: 5vmin;
+    margin-top: 1vmin;margin-bottom: 0vmin;
+    display: flex;padding-top: 0%;padding-bottom: 0%;
+    flex-direction: column;flex-wrap: nowrap;justify-content: flex-start;
+    align-content: flex-start;align-items: stretch;align-items: center;
+    scroll-behavior: smooth;transition: all 0.5s linear;overflow-y: scroll;
+    -ms-overflow-style: none;scrollbar-width: none;border-color: #48767c;
+    transition: all 0.4s, linear; box-shadow: 0 0 10px 5px inset #1C2F31;
+    border-width: 1vmin;border-style: solid;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    color:white;
+    
+
+}::-webkit-scrollbar {display: none;}
+
+

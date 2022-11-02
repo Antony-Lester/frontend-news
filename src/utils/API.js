@@ -24,3 +24,9 @@ export const patchVote = (article_id, voteDirection) => {
     return url.patch(`articles/${article_id}`, !voteDirection? {"inc_votes": "+1"} : {"inc_votes": "-1"})
         .then((res) => {return res.data })
 }
+
+export const getComments = (article_id) => {
+    return url.get(`articles/${article_id}/comments`)
+        .then((res) => {return res.data })
+        .catch((err) => { return [err]})
+}

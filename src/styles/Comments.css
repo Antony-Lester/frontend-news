@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
+.comments{
+    position:absolute;top: 52vh;height: 41vh;width: 90vw;
+    margin-left: 5vmin;margin-right: 5vmin;
+    margin-top: 0vmin;margin-bottom: 0vmin;
+    border-width: 1vmin;border-style: solid;
+    border-end-end-radius: 12px;
+    display: flex;padding-top: 0%;padding-bottom: 0%;
+    flex-direction: column;flex-wrap: nowrap;justify-content: flex-start;
+    align-content: flex-start;align-items: stretch;align-items: center;
+    scroll-behavior: smooth;transition: all 0.5s linear;overflow-y: scroll;
+    -ms-overflow-style: none;scrollbar-width: none;border-color: #48767c;
+    transition: all 0.4s, linear; box-shadow: 0 0 10px 5px inset #1C2F31;
+}::-webkit-scrollbar {display: none;}
+.commentsCard{
+    border-width: 1vmin;border-style: solid;border-radius: 12px;
+    border-color: #48767c; color:black;
+    height: auto; width: 90%;padding: 1%;margin: 1%;
+
+    background-color: #5baea7;
+}
+.commentsVote{
+    position:absolute; right: 5%; 
+    
+}
+.comment{
+    text-align: center;
+    padding-right: 7%;
+    font-family: 'Noto Sans Mono', monospace;
+}
