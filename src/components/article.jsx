@@ -75,7 +75,7 @@ export default function Article() {
             <div className='comments  brownBackground'>
             {comments.map((comment, i) => {
                 return (
-                    <div className="commentsCard " key={i}>
+                    <div className="commentsCard" key={i}>
                         <div className="commentsVote">
                             {' 🌟 ' + comment.votes}</div>   
                     <div className='comment'>{comment.body}</div>
