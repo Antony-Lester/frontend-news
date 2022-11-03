@@ -21,11 +21,36 @@
     background-color: #5baea7;
 }
 .commentsVote{
-    position:absolute; right: 5%; 
-    
+    position:relative; 
+    text-align: center;
 }
+
 .comment{
     text-align: center;
     padding-right: 7%;
     font-family: 'Noto Sans Mono', monospace;
 }
+.addComment{ height: auto; width: 90%;padding: 1%;margin: 1%;}
+.addCommentButton{
+    position: relative; top:50%; left:50%;
+    width: fit-content;height: 5vmin;padding: 1vmin;
+    margin: 0;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);
+    border-width: 1vmin;border-style: solid;border-radius: 12px;
+    border-color: #48767c; color:white;
+    box-shadow: 0 0 10px 5px  #311c1c; 
+}
+.addCommentInput{ 
+    border-width: 1vmin;border-style: solid;border-radius: 12px;
+    border-color: #48767c; 
+    color:black;
+    height: auto; width: 90%;padding: 1%;margin: 1%;
+    box-shadow: 0 0 10px 5px inset #48767c;
+    background-color: #5baea7;}
+.submitButton{position: relative;left:50%;
+    -ms-transform: translate(-50%, -50%);transform: translate(-120%, 0%);
+}
+.cancelButton{position: relative;left:50%;
+    -ms-transform: translate(-50%, -50%);transform: translate(-80%, 0%);
+}
+.commentButton{position: absolute; width: 16vmin; height: 5vmin;padding: 1vmin;
+    margin: 0;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
