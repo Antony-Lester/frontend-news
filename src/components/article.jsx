@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useContext} from 'react';
 import { Link, useLocation} from "react-router-dom";
-import { getArticle, getComments, patchVote, postComment } from '../utils/API';
+import { getArticle, getComments, patchVote, postComment, deleteComment} from '../utils/API';
 
 import {UserIdContext} from '../contexts/userContext'
 
@@ -21,6 +21,8 @@ export default function Article() {
     const [canComment, setCanComment] = useState(1)
     const [addComment, setAddComment] = useState(0)
     const [myComment, setMyComment] = useState('Add a comment...')
+    const [userComment, setUserComment] = useState([])
+    const [deleteCommentTrigger, setDeleteCommentTrigger] = useState(0)
 
     const { USERID, setUSERID } = useContext(UserIdContext);
 
@@ -37,13 +39,14 @@ export default function Article() {
     const handleAddComment = () => {addComment?setAddComment(0):setAddComment(1)}
 
     const handlePostComment = () => { 
-        postComment(article.article_id, USERID, myComment).then((data) => {
-            setComments([data, ...comments])
-            handleAddComment()
-            setCanComment(0)
-        })
-        
+        postComment(article.article_id, USERID, myComment)
+            .then((data) => { setComments([data, ...comments]); return data })
+            .then((data) => {setUserComment(data,...userComment)})
+        handleAddComment()
+        setCanComment(0)
     }
+
+    const handleDeleteComment = () => {setDeleteCommentTrigger(1)}
 
     useEffect(() => {
         if (vote) {
@@ -63,12 +66,22 @@ export default function Article() {
     useEffect(() => { 
         setLoading(1)
         getComments(location.pathname.slice(9))
-            .then(data => { setComments(data); return data })
-            .then(data => {
-                data.some(comment => comment.author === USERID) ? setCanComment(0) : setCanComment(1)
-            })
+            .then(data => { data.some(comment => comment.author === USERID) ? setCanComment(0) : setCanComment(1); return data })
+            .then(data => { setUserComment(data.filter((comment) => comment.author === USERID)); return data })
+            .then((data) => { setComments(data.filter(comment => comment.author !== USERID))})
         .then(() => { setLoading(0)});
     }, [viewComments,location, USERID])
+
+    useEffect(() => { 
+        if (deleteCommentTrigger) {
+            deleteComment(userComment[0].comment_id)
+            .then(() => {
+                const holder = [...userComment]
+                holder.shift()
+                setUserComment(holder)
+            }).then(() => { setDeleteCommentTrigger(0)})
+        }
+    },[deleteCommentTrigger, userComment])
 
     return (<>
         <div className='buttonBar'>
@@ -98,17 +111,24 @@ export default function Article() {
                 <h3 className='artAuthor'>{article.author}</h3>  
             </div>
                 <div className='comments  brownBackground'>
-                    {addComment ? <div className='addComment addCommentInput'>  
-                    <form>   
-                            <textarea className="addCommentInput" name="paragraph_text" cols="50" rows="8" onChange={(e) => {setMyComment(e.target.value)}}></textarea>
-                            <input type="button" value="Post Comment" aria-label="Submit Comment Button" className="submitButton border grayBackground" onClick={() => { handlePostComment()} }></input>
+                    {addComment ? <div className='addComment addCommentInput'>
+                        <form>
+                            <textarea className="addCommentInput" name="paragraph_text" cols="50" rows="8" onChange={(e) => { setMyComment(e.target.value) }}></textarea>
+                            <input type="button" value="Post Comment" aria-label="Submit Comment Button" className="submitButton border grayBackground" onClick={() => { handlePostComment() }}></input>
                             <input type="button" value="Cancel"
-                            aria-label="Cancel Comment Button"
-                            className="cancelButton border grayBackground" onClick={() => { handleAddComment() }}></input>
-                    </form> 
+                                aria-label="Cancel Comment Button"
+                                className="cancelButton border grayBackground" onClick={() => { handleAddComment() }}></input>
+                        </form>
                     </div> : canComment ? <div className='addComment'>
                         <div className='addCommentButton border grayBackground center' onClick={handleAddComment}>Add a comment</div>
-                    </div> : <></> }
+                        </div> : 
+                            userComment.length?
+                            <div className="commentsCard grayBackground" key={'user_comment'}>  
+                            <div className="myComment">My Comment</div>    
+                                <div className='comment'>{userComment[0].body}</div> 
+                        <div className="commentsVote">{' 🌟 ' + userComment[0].votes}</div>
+                                <div className="deleteButton border center lift brownBackground" onClick={handleDeleteComment}>Delete</div>            
+                    </div> : <></>}
             {comments.map((comment, i) => {
                 return (
                     <div className="commentsCard" key={i}>   
