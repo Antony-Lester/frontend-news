@@ -13,48 +13,36 @@ import '../styles/Comments.css'
 import CommentCard from './CommentCard';
 
 export default function Article() {
-
     const [article, setArticle] = useState([]);
     const [loading, setLoading] = useState(1);
     const [vote, setVote] = useState(0);
     const [viewComments, setViewComments] = useState(1);
     const [comments, setComments] = useState([]);
-    const [canComment, setCanComment] = useState(1)
-    const [addComment, setAddComment] = useState(0)
-    const [myComment, setMyComment] = useState('Add a comment...')
-    const [userComment, setUserComment] = useState([])
-    const [deleteCommentTrigger, setDeleteCommentTrigger] = useState(0)
-
+    const [canComment, setCanComment] = useState(1);
+    const [addComment, setAddComment] = useState(0);
+    const [myComment, setMyComment] = useState('Add a comment...');
+    const [userComment, setUserComment] = useState([]);
+    const [deleteCommentTrigger, setDeleteCommentTrigger] = useState(0);
     const { USERID, setUSERID } = useContext(UserIdContext);
-
     const location = useLocation();
 
     const handleVote = (event) => { 
-        setArticle(article => { return { ...article, votes: article.votes + 1 }; })
-        setVote(1)
-        event.preventDefault()
+        setArticle(article => { return { ...article, votes: article.votes + 1 }; });
+        setVote(1); event.preventDefault();
     }
-
-    const handleComment = () => {viewComments?setViewComments(0):setViewComments(1)}
-
-    const handleAddComment = () => {addComment?setAddComment(0):setAddComment(1)}
-
-    const handlePostComment = () => { 
+    const handleComment = () => { viewComments ? setViewComments(0) : setViewComments(1) };
+    const handleAddComment = () => { addComment ? setAddComment(0) : setAddComment(1) };
+    const handlePostComment = () => {
         postComment(article.article_id, USERID, myComment)
             .then((data) => { setComments([data, ...comments]); return data })
-            .then((data) => {setUserComment(data,...userComment)})
-        handleAddComment()
-        setCanComment(0)
-    }
-
-    const handleDeleteComment = () => {setDeleteCommentTrigger(1)}
+            .then((data) => { setUserComment(data, ...userComment) });
+        handleAddComment(); setCanComment(0);
+    };
 
     useEffect(() => {
-        if (vote) {
-            patchVote(location.pathname.slice(9))
-                .then(data => { setArticle(data);}) 
-                .catch(()=>setVote(0))
-        }
+        if (vote) { patchVote(location.pathname.slice(9))
+            .then(data => { setArticle(data);}) 
+            .catch(()=>setVote(0))}
     }, [vote,location]);
 
     useEffect(() => {
@@ -86,31 +74,29 @@ export default function Article() {
 
     return (<>
         <div className='buttonBar'>
-            <button className={vote ?
-                'center title votes lift' :
-                'center border grayBackground title votes lift'}
-                onClick={handleVote} disabled={vote} >
-                {loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
-            {loading ?
-                <img className='directionButton border center grayBackground lift' src={loadImg} alt="View Comments" /> :
+
+
+            <button className={vote ? 'center title votes lift' : 'center border grayBackground title votes lift'}
+                onClick={handleVote} disabled={vote} >{loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
+            
+
+            {loading ? <img className='directionButton border center grayBackground lift' src={loadImg} alt="View Comments" /> :
                 <div onClick={handleComment} className='commentButton border center grayBackground lift' src={artImg} alt="View Comments" >
                 Comments</div>}
+            
+
             <Link to='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
+
+
         </div>
 
-        {viewComments ?
-            <div className='articles border brownBackground'>
+        <div className='articles border brownBackground'>
                 <h2 className='artTitle'>{article.title}</h2>
                 <p className='artBody'>{article.body}</p>
                 <h3 className='artAuthor'>{article.author}</h3>
             </div>
-            :
+        {viewComments ? <></>:
             <>
-            <div className='articlesSmall brownBackground'>
-                <h2 className='artTitle'>{article.title}</h2>
-                <p className='artBody'>{article.body}</p>
-                <h3 className='artAuthor'>{article.author}</h3>  
-            </div>
                 <div className='comments  brownBackground'>
                     {addComment ? <div className='addComment addCommentInput'>
                         <form>
@@ -128,7 +114,7 @@ export default function Article() {
                             <div className="myComment">My Comment</div>    
                                 <div className='comment'>{userComment[0].body}</div> 
                         <div className="commentsVote">{' 🌟 ' + userComment[0].votes}</div>
-                                <div className="deleteButton border center lift brownBackground" onClick={handleDeleteComment}>Delete</div>            
+                                    <div className="deleteButton border center lift brownBackground" onClick={() => {setDeleteCommentTrigger(1)}}>Delete</div>            
                     </div> : <></>}
                     {comments.map((comment, i) => <CommentCard key={i} body={comment.body} votes={comment.votes}/>)}
             </div>
