@@ -28,8 +28,8 @@ option {color: white;background: #656565;}
 .directionButton{position: absolute;width: 5vmin;height: 5vmin;padding: 1vmin;
     margin: 0;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
 .topicButton{position: absolute;width: auto;height: auto; padding: 1vmin;margin: 0;
-    top: 50%;left: 50%;-ms-transform: translate(50%, -50%);
-    transform: translate(50%, -50%);}
+    top: 50%;left: 50%;-ms-transform: translate(90%, -50%);
+    transform: translate(90%, -50%);}
 .articles{
     position:absolute;top: 10vh;bottom: 0;width: 90vw;
     margin-top: 1vmin;margin-left: 5vmin;margin-right: 5vmin;margin-bottom: 5vmin;

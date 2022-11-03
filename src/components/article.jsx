@@ -36,11 +36,13 @@ export default function Article() {
 
     const handleAddComment = () => {addComment?setAddComment(0):setAddComment(1)}
 
-    const handlePostComment = (event) => { 
-        postComment(article.article_id, USERID, myComment).then((data) => { setComments([...data,...comments])})
-        handleAddComment()
-        setCanComment(0)
-        event.preventDefault()
+    const handlePostComment = () => { 
+        postComment(article.article_id, USERID, myComment).then((data) => {
+            setComments([data, ...comments])
+            handleAddComment()
+            setCanComment(0)
+        })
+        
     }
 
     useEffect(() => {
@@ -63,7 +65,8 @@ export default function Article() {
         getComments(location.pathname.slice(9))
             .then(data => { setComments(data); return data })
             .then(data => {
-                data.some(comment => comment.author === USERID) ? setCanComment(0) :setCanComment(1)
+                data.some(comment => comment.author === USERID) ? setCanComment(0) : setCanComment(1)
+                console.log(data)
             })
         .then(() => { setLoading(0)});
     }, [viewComments,location, USERID])
@@ -75,7 +78,10 @@ export default function Article() {
                 'center border grayBackground title votes lift'}
                 onClick={handleVote} disabled={vote} >
                 {loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
-            {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order"/> : <img onClick={handleComment} className='directionButton border center grayBackground lift' src={artImg} alt="sort order"/>}
+            {loading ?
+                <img className='directionButton border center grayBackground lift' src={loadImg} alt="View Comments" /> :
+                <div onClick={handleComment} className='commentButton border center grayBackground lift' src={artImg} alt="View Comments" >
+                Comments</div>}
             <Link to='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
         </div>
 
@@ -102,8 +108,7 @@ export default function Article() {
                             className="cancelButton border grayBackground" onClick={() => { handleAddComment() }}></input>
                     </form> 
                     </div> : canComment ? <div className='addComment'>
-                        <div className='addCommentHelper'>Add a comment</div>
-                    <img onClick={handleAddComment} className='addCommentButton border grayBackground' src={artImg} alt="sort order"/>  
+                        <div className='addCommentButton border grayBackground center' onClick={handleAddComment}>Add a comment</div>
                     </div> : <></> }
             {comments.map((comment, i) => {
                 return (
