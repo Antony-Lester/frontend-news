@@ -35,12 +35,13 @@ export default function Articles() {
 
     return (<>
         <div className='buttonBar'>
-        <div className=' center title' >Articles</div>
+            <div className=' center title' >Articles {direction === 'asc' ? 'Ascending' : 'Descending'} by {sort === 'created_at' ? 'Date' : sort === 'votes' ? 'Votes' : 'Comments' }</div>
             <select className='sortInput border center grayBackground lift' onChange={
                 (event) => { setLoading(1); setSort(event.target.value)}
                 } >
                 <option value='created_at'>Date</option>
-                <option value='votes'>Vote's</option>
+                <option value='votes'>Votes</option>
+                <option value='comment_count'>Comments</option>
             </select>
             {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order" onClick={() => { setLoading(1); toggleDirection() }} /> : <img className='directionButton border center grayBackground lift' src={dirImg} alt="sort order" onClick={() => { setLoading(1); toggleDirection() }} />}
             <Link to='/topics'><div className='topicButton border grayBackground flip lift'>Topics</div></Link>
