@@ -6,8 +6,8 @@
 .link:hover{text-decoration: none;}
 .link:active{text-decoration: none;}
 
-.title{position: absolute; padding: 1vmin;margin: 0;
+.title{position: absolute; padding: 1vmin;margin-right: 2vmin;
     border-width: 1vmin;border-style: solid;border-radius: 12px;
     color: #48767c; border-color: #48767c; background-color: transparent;
-    -ms-transform: translate(-150%, -50%);transform: translate(-150%,-50%);
+    -ms-transform: translate(-110%, -50%);transform: translate(-110%,-50%);
     font-family: 'Roboto', sans-serif;}
