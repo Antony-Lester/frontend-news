@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,700&display=swap');
+
 
 .buttonBar{position:absolute;top: 0;left: 0;width: 100vw;height: 10vh;}
 .border{border-width: 1vmin;border-style: solid;border-radius: 12px;

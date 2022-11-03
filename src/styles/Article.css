@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap');
+
 .artTitle{text-align: center; font-family: 'Special Elite', cursive;}
 .artBody{text-align: center;padding: 5%;font-family: 'EB Garamond', serif;}
 .artAuthor{text-align: center;padding: 5%;font-family: 'Aguafina Script', cursive;}

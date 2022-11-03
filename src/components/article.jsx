@@ -10,6 +10,7 @@ import loadImg from '../images/loading.svg'
 import '../styles/Articles.css'
 import '../styles/Article.css'
 import '../styles/Comments.css'
+import CommentCard from './CommentCard';
 
 export default function Article() {
 
@@ -129,13 +130,7 @@ export default function Article() {
                         <div className="commentsVote">{' 🌟 ' + userComment[0].votes}</div>
                                 <div className="deleteButton border center lift brownBackground" onClick={handleDeleteComment}>Delete</div>            
                     </div> : <></>}
-            {comments.map((comment, i) => {
-                return (
-                    <div className="commentsCard" key={i}>   
-                    <div className='comment'>{comment.body}</div> 
-                    <div className="commentsVote">{' 🌟 ' + comment.votes}</div> 
-                    </div>
-                    )})}
+                    {comments.map((comment, i) => <CommentCard key={i} body={comment.body} votes={comment.votes}/>)}
             </div>
             </>
         }

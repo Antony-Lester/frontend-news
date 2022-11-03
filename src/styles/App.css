@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
+
+.titleText{}
+.mainText{}
+.subText{color:black;}
+
+.bg{background-color: #5baea7;}
+.bgb{border-width: 1vmin; border-style: solid;border-radius: 12px; border-color: #48767c; }
+.bgbsi{box-shadow: 0 0 10px 5px inset #48767c;}
+
+.titleFont{}
+.mainFont{}
+.subFont{font-family: 'EB Garamond', serif;}
+
+
+
 .App {}
 
 .link{text-decoration: none;}
