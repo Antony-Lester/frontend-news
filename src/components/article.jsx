@@ -66,7 +66,6 @@ export default function Article() {
             .then(data => { setComments(data); return data })
             .then(data => {
                 data.some(comment => comment.author === USERID) ? setCanComment(0) : setCanComment(1)
-                console.log(data)
             })
         .then(() => { setLoading(0)});
     }, [viewComments,location, USERID])
