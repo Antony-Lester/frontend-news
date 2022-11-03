@@ -9,7 +9,7 @@ import Topics from './components/topics';
 import Article from './components/article';
 
 function App() {
-  const [USERID, setUSERID] = useState() //Hard Coded 
+  const [USERID, setUSERID] = useState('grumpy19') //Hard Coded USER 
   
   return (
     <div className="App">

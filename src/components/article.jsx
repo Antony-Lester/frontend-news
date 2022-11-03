@@ -1,7 +1,9 @@
 
-import { useState, useEffect, } from 'react';
+import { useState, useEffect, useContext} from 'react';
 import { Link, useLocation} from "react-router-dom";
-import { getArticle, getComments, patchVote } from '../utils/API';
+import { getArticle, getComments, patchVote, postComment } from '../utils/API';
+
+import {UserIdContext} from '../contexts/userContext'
 
 import artImg from '../images/article.svg'
 import loadImg from '../images/loading.svg'
@@ -16,6 +18,12 @@ export default function Article() {
     const [vote, setVote] = useState(0);
     const [viewComments, setViewComments] = useState(1);
     const [comments, setComments] = useState([]);
+    const [canComment, setCanComment] = useState(1)
+    const [addComment, setAddComment] = useState(0)
+    const [myComment, setMyComment] = useState('Add a comment...')
+
+    const { USERID, setUSERID } = useContext(UserIdContext);
+
     const location = useLocation();
 
     const handleVote = (event) => { 
@@ -24,7 +32,16 @@ export default function Article() {
         event.preventDefault()
     }
 
-    const handleComment = () => {viewComments? setViewComments(0) : setViewComments(1) }
+    const handleComment = () => {viewComments?setViewComments(0):setViewComments(1)}
+
+    const handleAddComment = () => {addComment?setAddComment(0):setAddComment(1)}
+
+    const handlePostComment = (event) => { 
+        postComment(article.article_id, USERID, myComment).then((data) => { setComments([...data,...comments])})
+        handleAddComment()
+        setCanComment(0)
+        event.preventDefault()
+    }
 
     useEffect(() => {
         if (vote) {
@@ -44,9 +61,12 @@ export default function Article() {
     useEffect(() => { 
         setLoading(1)
         getComments(location.pathname.slice(9))
-        .then(data => { setComments(data); })
+            .then(data => { setComments(data); return data })
+            .then(data => {
+                data.some(comment => comment.author === USERID) ? setCanComment(0) :setCanComment(1)
+            })
         .then(() => { setLoading(0)});
-    }, [viewComments,location])
+    }, [viewComments,location, USERID])
 
     return (<>
         <div className='buttonBar'>
@@ -55,7 +75,7 @@ export default function Article() {
                 'center border grayBackground title votes lift'}
                 onClick={handleVote} disabled={vote} >
                 {loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
-            {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order"/> : <img onClick={handleComment} className='directionButton border center brownBackground lift' src={artImg} alt="sort order"/>}
+            {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order"/> : <img onClick={handleComment} className='directionButton border center grayBackground lift' src={artImg} alt="sort order"/>}
             <Link to='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
         </div>
 
@@ -72,14 +92,25 @@ export default function Article() {
                 <p className='artBody'>{article.body}</p>
                 <h3 className='artAuthor'>{article.author}</h3>  
             </div>
-            <div className='comments  brownBackground'>
+                <div className='comments  brownBackground'>
+                    {addComment ? <div className='addComment addCommentInput'>  
+                    <form>   
+                            <textarea className="addCommentInput" name="paragraph_text" cols="50" rows="8" onChange={(e) => {setMyComment(e.target.value)}}></textarea>
+                            <input type="button" value="Post Comment" aria-label="Submit Comment Button" className="submitButton border grayBackground" onClick={() => { handlePostComment()} }></input>
+                            <input type="button" value="Cancel"
+                            aria-label="Cancel Comment Button"
+                            className="cancelButton border grayBackground" onClick={() => { handleAddComment() }}></input>
+                    </form> 
+                    </div> : canComment ? <div className='addComment'>
+                        <div className='addCommentHelper'>Add a comment</div>
+                    <img onClick={handleAddComment} className='addCommentButton border grayBackground' src={artImg} alt="sort order"/>  
+                    </div> : <></> }
             {comments.map((comment, i) => {
                 return (
-                    <div className="commentsCard" key={i}>
-                        <div className="commentsVote">
-                            {' 🌟 ' + comment.votes}</div>   
-                    <div className='comment'>{comment.body}</div>
-                        </div>
+                    <div className="commentsCard" key={i}>   
+                    <div className='comment'>{comment.body}</div> 
+                    <div className="commentsVote">{' 🌟 ' + comment.votes}</div> 
+                    </div>
                     )})}
             </div>
             </>

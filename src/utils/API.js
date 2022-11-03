@@ -30,3 +30,11 @@ export const getComments = (article_id) => {
         .then((res) => {return res.data })
         .catch((err) => { return [err]})
 }
+
+export const postComment = (article_id, username, body) => {
+    console.log(article_id, username, body)
+    return url.post(`articles/${article_id}/comments`, {username, body})
+        .then((res) => {return res.data })
+        .catch((err) => { return [err]})
+}
+
