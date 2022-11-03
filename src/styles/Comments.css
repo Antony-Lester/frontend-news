@@ -54,3 +54,6 @@
 }
 .commentButton{position: absolute; width: 16vmin; height: 5vmin;padding: 1vmin;
     margin: 0;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+
+.myComment{text-align: center; text-decoration: underline;}
+.deleteButton{text-align: center; width: fit-content; padding: 1vmin;}

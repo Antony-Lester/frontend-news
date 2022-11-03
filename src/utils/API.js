@@ -37,3 +37,9 @@ export const postComment = (article_id, username, body) => {
         .catch((err) => { return [err]})
 }
 
+export const deleteComment = (comment_id) => { 
+    return url.delete(`comments/${comment_id}`)
+    .then((res) => {return res.data })
+    .catch((err) => { return [err]})
+}
+
