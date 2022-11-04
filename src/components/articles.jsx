@@ -2,8 +2,6 @@ import { useState, useEffect, } from 'react';
 import { Link, useLocation} from "react-router-dom";
 import { getArticles } from '../utils/API';
 
-import dirImg from '../images/direction.svg'
-import loadImg from '../images/loading.svg'
 import '../styles/Articles.css'
 
 export default function Articles() {

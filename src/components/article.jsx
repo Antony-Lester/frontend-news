@@ -5,8 +5,6 @@ import { getArticle, getComments, patchVote, postComment, deleteComment} from '.
 
 import {UserIdContext} from '../contexts/userContext'
 
-import artImg from '../images/article.svg'
-import loadImg from '../images/loading.svg'
 import '../styles/Articles.css'
 import '../styles/Article.css'
 import '../styles/Comments.css'
