@@ -72,13 +72,14 @@ export default function Article() {
 
     return (<>
         <header>
-            <button
+            {article.votes>0 ? <button
                 className={vote ? 'header2 border  titleFont titleText title votes lift' :
                     'header2  titleFont titleText border lift  grayBackground'}
                 onClick={handleVote}
                 disabled={vote}>
                 {loading ? 'Loading' : ' 🌟 ' + article.votes}
-            </button>
+            </button> : <></>}
+            
             <div className='header1 titleFont titleText border lift grayBackground' onClick={handleComment} >
                 Comments
             </div>
@@ -106,13 +107,12 @@ export default function Article() {
                     </div> : canComment ? <div className='addComment'>
                         <div className='addCommentButton border grayBackground center' onClick={handleAddComment}>Add a comment</div>
                         </div> : 
-                            userComment.length?
-                            <div className="commentsCard grayBackground" key={'user_comment'}>  
-                            <div className="myComment">My Comment</div>    
-                                <div className='comment'>{userComment[0].body}</div> 
-                        <div className="commentsVote">{' 🌟 ' + userComment[0].votes}</div>
-                                    <div className="deleteButton border center lift brownBackground" onClick={() => {setDeleteCommentTrigger(1)}}>Delete</div>            
-                    </div> : <></>}
+                            userComment.length ?
+                            <>  
+                                    <CommentCard key={'my'} body={userComment[0].body} votes={userComment[0].votes} />
+                                    <div className="deleteButton border grayBackground" onClick={() => {setDeleteCommentTrigger(1)}}>^ Delete My Comment ^</div> 
+                            </>
+                            : <></>}
                     {comments.map((comment, i) => <CommentCard key={i} body={comment.body} votes={comment.votes}/>)}
             </div>
             </>
@@ -121,3 +121,10 @@ export default function Article() {
     </>
 );
 }
+
+
+/*
+<div className="commentsCard grayBackground" key={'user_comment'}>     
+                                <div className='comment'><u>My Comment</u><br/>{userComment[0].body}</div> 
+                                    <div className="commentsVote">{'🌟'.repeat(userComment[0].votes > 0 ? userComment[0].votes : 0)}</div>
+*/
