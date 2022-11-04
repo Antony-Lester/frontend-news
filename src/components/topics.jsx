@@ -17,12 +17,20 @@ export default function Articles() {
             .then(() => { setLoading(0) });
     }, []);
 
+
+    /*
+    {loading ? <img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order" /> : <img className='directionButton border center grayBackground lift' src={topicImg} alt="sort order" />}
+    */
     return (<>
-        <div className='buttonBar'>
-            <div className='title center' >Topics</div>
-            {loading?<img className='directionButton border center grayBackground lift' src={loadImg} alt="sort order"/> : <img className='directionButton border center grayBackground lift' src={topicImg} alt="sort order"  />}
-            <Link to ='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
-        </div>
+        <header>
+            
+            
+
+            <h1 className='titleFont titleText bgb'>Topics</h1>
+            <Link to='/'>
+                <nav className='titleFont titleText border lift grayBackground'>Articles</nav>
+            </Link>
+        </header>
         <div className='articles border grayBackground'>
             {topics.map((topic, i) => {
                 return (<div className="articleSummery border flip" key={topic.slug}>

@@ -6,30 +6,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,700&display=swap');
 
-.titleText{}
-.mainText{}
+.titleText{color: white;}
 .subText{color:black;}
 
 .bg{background-color: #5baea7;}
 .bgb{border-width: 1vmin; border-style: solid;border-radius: 12px; border-color: #48767c; }
 .bgbsi{box-shadow: 0 0 10px 5px inset #48767c;}
 
-.titleFont{}
-.mainFont{}
+.titleFont{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2vw;
+    text-align: center;
+}
 .subFont{font-family: 'EB Garamond', serif;}
 
+header{position:absolute;top: 0;left: 0;
+    width: 100vw; height: 10vh;
+}
+nav{
+    position: absolute;
+    width: auto; height: auto;
+    max-height: 50%;
+    padding: 1vmin; margin: 0; 
+    right:10%;
+    top:50%;
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+h1{
+    position: absolute;
+    width: fit-content; height: fit-content;
+    max-width: 40%;
+    padding: 0.5vmin; margin: 0; 
+    left:50%;
+    top:50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.header1{
+    position: absolute;
+    width: fit-content; height: fit-content;
+    max-width: 10%;
+    top: 50%; left:7%;
+    padding: 0.5vmin; margin: 0; 
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+}
 
-
-.App {}
+.header2{
+    position: absolute;
+    width: fit-content; height: fit-content;
+    padding: 0.5vmin; margin: 0; 
+    top:50%; left:20%;
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+}
 
 .link{text-decoration: none;}
 .link:link{text-decoration: none;}
 .link:visited{text-decoration: none;}
 .link:hover{text-decoration: none;}
 .link:active{text-decoration: none;}
-
-.title{position: absolute; padding: 1vmin;margin-right: 2vmin;
-    border-width: 1vmin;border-style: solid;border-radius: 12px;
-    color: #48767c; border-color: #48767c; background-color: transparent;
-    -ms-transform: translate(-110%, -50%);transform: translate(-110%,-50%);
-    font-family: 'Roboto', sans-serif;}

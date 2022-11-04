@@ -73,25 +73,24 @@ export default function Article() {
     },[deleteCommentTrigger, userComment])
 
     return (<>
-        <div className='buttonBar'>
-
-
-            <button className={vote ? 'center title votes lift' : 'center border grayBackground title votes lift'}
-                onClick={handleVote} disabled={vote} >{loading ? 'Loading' : ' 🌟 ' + article.votes}</button>
-            
-
-            {loading ? <img className='directionButton border center grayBackground lift' src={loadImg} alt="View Comments" /> :
-                <div onClick={handleComment} className='commentButton border center grayBackground lift' src={artImg} alt="View Comments" >
-                Comments</div>}
-            
-
-            <Link to='/'><div className='topicButton border grayBackground flip lift'>Articles</div></Link>
-
-
-        </div>
+        <header>
+            <button
+                className={vote ? 'header2 border  titleFont titleText title votes lift' :
+                    'header2  titleFont titleText border lift  grayBackground'}
+                onClick={handleVote}
+                disabled={vote}>
+                {loading ? 'Loading' : ' 🌟 ' + article.votes}
+            </button>
+            <div className='header1 titleFont titleText border lift grayBackground' onClick={handleComment} >
+                Comments
+            </div>
+            <h1 className='titleFont titleText bgb'>{article.title}</h1>
+            <Link to='/'>
+                <nav className='titleFont titleText border lift grayBackground'>Articles</nav>
+            </Link>
+        </header>
 
         <div className='articles border brownBackground'>
-                <h2 className='artTitle'>{article.title}</h2>
                 <p className='artBody'>{article.body}</p>
                 <h3 className='artAuthor'>{article.author}</h3>
             </div>
