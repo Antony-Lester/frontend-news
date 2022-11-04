@@ -1,8 +1,8 @@
 
 .artTitle{text-align: center; font-family: 'Special Elite', cursive;}
-.artBody{text-align: center;padding: 5%;font-family: 'EB Garamond', serif;}
-.artAuthor{text-align: center;padding: 5%;font-family: 'Aguafina Script', cursive;}
-.votes{padding-right: 0%; margin-right: 5%; width: 12%;
+.artBody{text-align: center;padding: 1%;font-family: 'EB Garamond', serif;}
+.artAuthor{text-align: center;padding: 1%;font-family: 'Aguafina Script', cursive;}
+.votes{padding-right: 0%; margin-right: 1%; width: 12%;
     -ms-transform: translate(-200%, -50%);transform: translate(-200%, -50%);
 }
 
@@ -25,5 +25,3 @@
     
 
 }::-webkit-scrollbar {display: none;}
-
-

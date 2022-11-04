@@ -91,7 +91,7 @@ export default function Article() {
 
         <div className='articles border brownBackground'>
                 <p className='artBody'>{article.body}</p>
-                <h3 className='artAuthor'>{article.author}</h3>
+                <p className='artAuthor'>{article.author}</p>
             </div>
         {viewComments ? <></>:
             <>

@@ -15,7 +15,7 @@
 
 .titleFont{
     font-family: 'Roboto', sans-serif;
-    font-size: 2vw;
+    font-size: 2vmin;
     text-align: center;
 }
 .subFont{font-family: 'EB Garamond', serif;}
@@ -46,7 +46,7 @@ h1{
 .header1{
     position: absolute;
     width: fit-content; height: fit-content;
-    max-width: 10%;
+    max-width: 14%;
     top: 50%; left:7%;
     padding: 0.5vmin; margin: 0; 
     -ms-transform: translate(0%, -50%);
@@ -57,7 +57,7 @@ h1{
     position: absolute;
     width: fit-content; height: fit-content;
     padding: 0.5vmin; margin: 0; 
-    top:50%; left:20%;
+    top:50%; left:22%;
     -ms-transform: translate(0%, -50%);
     transform: translate(0%, -50%);
 }
