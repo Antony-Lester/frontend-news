@@ -40,4 +40,7 @@
     margin: 0;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
 
 .myComment{text-align: center; text-decoration: underline;}
-.deleteButton{text-align: center; width: fit-content; padding: 1vmin;}
+.deleteButton{
+    margin: auto;
+    
+    text-align: center; width: fit-content; padding: 1vmin;}

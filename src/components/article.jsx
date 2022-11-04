@@ -108,9 +108,11 @@ export default function Article() {
                         <div className='addCommentButton border grayBackground center' onClick={handleAddComment}>Add a comment</div>
                         </div> : 
                             userComment.length ?
-                            <>  
-                                    <CommentCard key={'my'} body={userComment[0].body} votes={userComment[0].votes} />
-                                    <div className="deleteButton border grayBackground" onClick={() => {setDeleteCommentTrigger(1)}}>^ Delete My Comment ^</div> 
+                                <>  
+                                    <div className='titleFont border commentsCard comment grayBackground'><u>Your Comment</u>
+                                        <CommentCard key={'my'} body={userComment[0].body} votes={userComment[0].votes} />
+                                        <div className="deleteButton border grayBackground" onClick={() => { setDeleteCommentTrigger(1) }}>Delete</div> 
+                                        </div>
                             </>
                             : <></>}
                     {comments.map((comment, i) => <CommentCard key={i} body={comment.body} votes={comment.votes}/>)}
@@ -121,10 +123,3 @@ export default function Article() {
     </>
 );
 }
-
-
-/*
-<div className="commentsCard grayBackground" key={'user_comment'}>     
-                                <div className='comment'><u>My Comment</u><br/>{userComment[0].body}</div> 
-                                    <div className="commentsVote">{'🌟'.repeat(userComment[0].votes > 0 ? userComment[0].votes : 0)}</div>
-*/
