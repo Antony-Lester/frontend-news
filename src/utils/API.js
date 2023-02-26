@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = axios.create({ baseURL: 'https://antony-lester-news-articles.herokuapp.com/api/' })
+const url = axios.create({ baseURL: 'https://nc-news-h9sk.onrender.com/api/' })
 
 export const getArticles = (sort_by = 'created_at', order = 'asc', topic) => {
     return url.get(`articles`, { params: { sort_by, order, topic } })

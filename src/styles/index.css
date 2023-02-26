@@ -1,11 +1,10 @@
 
-
 body {top: 0; left: 0; width: 100vw; height: 100vh; margin: 0;
-  font-family: 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-	overflow-y: hidden;
-	overflow-x: hidden;
-	background-color: #5baea7;
-  font-size: 2.5vw
-  }
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: #5baea7;
+    font-size: 2.5vw
+    }
